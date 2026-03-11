@@ -1,18 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Blog.Models;
-using Blog.Data;
-using Microsoft.AspNetCore.Identity.UI.Pages.Internal.Account;
 using System.Threading.Tasks;
+using Blog.Data.Repository;
 
 namespace blog.Controllers
 {
     public class HomeController : Controller
     {
-        private AppDbContext _ctx;
+        private IRepository _repo;
 
-        public HomeController(AppDbContext ctx)
+        public HomeController(IRepository repo)
         {
-            _ctx = ctx;
+            _repo = repo;
         }
 
 
@@ -36,9 +35,12 @@ namespace blog.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Post post)
         {
-            _ctx.Posts.Add(post);
-            await _ctx.SaveChangesAsync();
-            return RedirectToAction("Index");
+            _repo.AddPost(post);
+
+            if (await _repo.SaveChangesAsync())
+                return RedirectToAction("Index");
+            else
+                return View(post);
         }
     }
 }

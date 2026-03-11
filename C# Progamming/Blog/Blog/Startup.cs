@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Data;
+using Blog.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,7 @@ namespace Blog
         {
             services.AddDbContext<AppDbContext>(Options => Options.UseSqlServer(_config["DefaultConnection"]));
 
+            services.AddTransient<IRepository, Repository>();
 
             services.AddMvc();
         }
