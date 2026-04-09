@@ -1,0 +1,1 @@
+these code all are from the w3 school how to code functions
