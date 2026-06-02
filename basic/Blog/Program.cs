@@ -4,6 +4,7 @@ using Blog.Data.Repository;
 using Microsoft.AspNetCore.Identity;
 using Blog.Infrastructure.Identity;
 using Blog.Data.Seed;
+using Blog.Data.FileManager;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddScoped<IRepository, Repository>();
+
+builder.Services.AddScoped<IFileManager, FileManager>();
 // Add services to the container
 builder.Services.AddControllersWithViews(); // for mvc
 
@@ -41,7 +44,7 @@ await DatabaseInitializer.InitializeAsync(app.Services);
 
 // app.MapGet("/", () => "Hello World!");
 app.UseHttpsRedirection();
-//app.UseStaticFiles();
+app.UseStaticFiles();
 
 app.UseRouting();
 
