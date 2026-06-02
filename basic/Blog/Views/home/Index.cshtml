@@ -4,11 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>home page</h2>
+@* <h2>home page</h2> *@
 
-<img src="~/content/static/default.jpg" width="500"/>
-<div>
-    <ul>
+@* <img src="~/content/static/default.jpg" width="500"/> *@
+<div class="main-img">
+    <span class="title">Amazing Blog Site</span>
+</div>
+
+<div class="container">
+    @* <ul>
         @foreach(var post in Model)
         {
             <li>
@@ -17,5 +21,16 @@
                 </a>
             </li>
         }
-    </ul>
+    </ul> *@
+
+    @foreach(var post in Model)
+    {
+        var image_path = $"/Image/{post.Image}";
+        <a class="post" asp-controller="Home" asp-action="Post" asp-route-Id="@post.Id">
+            <img src="@image_path" width="500" />
+            <span class="title">
+                @post.Title
+            </span>
+        </a>
+    }
 </div>
