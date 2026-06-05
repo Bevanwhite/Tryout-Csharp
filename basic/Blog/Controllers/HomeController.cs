@@ -17,10 +17,11 @@ public class HomeController : Controller
 
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string category)
     {
-
-        var posts = _repo.GetAllPosts();
+        var posts = string.IsNullOrEmpty(category)
+            ? _repo.GetAllPosts()
+            : _repo.GetAllPosts(category);
         return View(posts);
     }
 

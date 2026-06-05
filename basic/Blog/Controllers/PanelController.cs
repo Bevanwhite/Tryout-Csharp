@@ -43,6 +43,9 @@ public class PanelController : Controller
                 Title = post.Title,
                 Body = post.Body,
                 Current_Image = post.Image,
+                Description = post.Description,
+                Tags = post.Tags,
+                Category = post.Category,
             });
         }
 
@@ -56,7 +59,10 @@ public class PanelController : Controller
         {
             Id = postViewModel.Id,
             Title = postViewModel.Title,
-            Body = postViewModel.Body
+            Body = postViewModel.Body,
+            Description = postViewModel.Description,
+            Tags = postViewModel.Tags,
+            Category = postViewModel.Category,
         };
 
         if (postViewModel.Image == null)

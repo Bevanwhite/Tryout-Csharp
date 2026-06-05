@@ -1,4 +1,6 @@
+using System.Linq.Expressions;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blog.Data.Repository;
 
@@ -18,6 +20,16 @@ public class Repository : IRepository
     public List<Post> GetAllPosts()
     {
         return _repo.Posts.ToList();
+    }
+
+    public List<Post> GetAllPosts(string category)
+    {
+        Expression<Func<Post, bool>> InCategory =
+        (post) => post.Category.ToLower().Equals(category.ToLower());
+
+        return _repo.Posts
+            .Where(InCategory)
+            .ToList();
     }
 
     public Post GetPost(int id)
