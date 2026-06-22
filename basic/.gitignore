@@ -10,9 +10,9 @@ obj/
 /node_modules
 /wwwroot/node_modules
 /wwwroot/lib/Trumbowyg-main/src
-Blog/wwwroot/lib/Trumbowyg-main/src
-Blog/wwwroot/lib/Trumbowyg-main/plugins
-Blog/wwwroot/lib/Trumbowyg-main/docs
+/wwwroot/lib/Trumbowyg-main/src
+/wwwroot/lib/Trumbowyg-main/plugins
+/wwwroot/lib/Trumbowyg-main/docs
 
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
